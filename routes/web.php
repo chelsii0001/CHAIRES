@@ -30,6 +30,8 @@ Route::group(['prefix'=>'tutorias'], function(){
 
         Route::post('store', [ReporteController::class, 'store'])->name('reportes.store');
         Route::get('/download/{file}',[ReporteController::class, 'download'])->name('reportes.download');
+        Route::get('/detalle/{id}', [ReporteController::class, 'detalle'])->name('reporte.detalle');
+        Route::post('update', [ReporteController::class, 'update'])->name('reporte.update');
     });
 
 });

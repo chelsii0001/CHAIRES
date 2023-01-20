@@ -11,7 +11,7 @@
                     <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                         <ul class="breadcrumb pt-0">
                             <li class="breadcrumb-item"><a href={{ route('index') }}>Dashboard</a></li>
-                            <li class="breadcrumb-item"><a>Tutorias</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Tutorias</a></li>
                             <li class="breadcrumb-item active"><a>{{ $title }}</a></li>
                         </ul>
                     </nav>
@@ -44,6 +44,8 @@
                         <h4 class="mb-3"><b>NOMBRE:</b> {{ strtoupper($data->nombre) }}</h4>
                         <h4 class="mb-3"><b>PROFESOR ASIGNADO:</b> {{ strtoupper($data['maestro']->nombre) }}</h4>
                         <h4 class="mb-3"><b>GRUPO ASIGNADO:</b> {{ strtoupper($data['grupo']->nombre) }}</h4>
+                        <h4 class="mb-3"><b>FECHA LIMITE: </b>
+                            {{ strtoupper(Carbon\Carbon::parse($data->limite)->formatLocalized('%d %B %Y')) }}</h4>
                         <div class="mb-4">
                             <p>
                                 {{ $data->descripcion }}
@@ -81,29 +83,40 @@
                             </div>
                         @else
                             @foreach ($reportes as $item)
-                                <div class="d-flex align-items-center pb-3 mt-3">
-                                    <div class="row g-0 w-100">
-                                        <div class="col-auto">
-                                            <div class="sw-5 me-3">
-                                                <img src="{{ asset('assets/img/avatars/users/' . $item['user']->img) }}"
-                                                    class="img-fluid rounded-xl" alt="thumb" />
+                                <a href="{{ route('reporte.detalle', $item->id) }}">
+                                    <div class="d-flex align-items-center pb-3 mt-3">
+                                        <div class="row g-0 w-100">
+                                            <div class="col-auto">
+                                                <div class="sw-5 me-3">
+                                                    <img src="{{ asset('assets/img/avatars/users/' . $item['user']->img) }}"
+                                                        class="img-fluid rounded-xl" alt="thumb" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col pe-3">
-                                            <a href="#">{{ strtoupper($item['user']->name) }}</a>
-                                            <div class="text-muted text-small mb-2">
-                                                {{ $item->created_at->diffForHumans() }}
+                                            <div class="col pe-3">
+                                                <a href="#">{{ strtoupper($item['user']->name) }}</a>
+                                                <div class="text-muted text-small mb-2">
+                                                    {{ $item->created_at->diffForHumans() }}
+                                                </div>
+                                                <div class="text-medium text-alternate lh-1-25">
+                                                    {{ strtoupper($item->descripcion) }}</div>
+                                                <div class="text-medium text-alternate lh-1-25">
+                                                    <a href="{{ route('reportes.download', $item->file) }}"><i
+                                                            data-cs-icon="download"
+                                                            class="mb-3 d-inline-block text-primary"></i></a>
+                                                </div>
                                             </div>
-                                            <div class="text-medium text-alternate lh-1-25">
-                                                {{ strtoupper($item->descripcion) }}</div>
-                                            <div class="text-medium text-alternate lh-1-25">
-                                                <a href="{{ route('reportes.download', $item->file) }}"><i
-                                                        data-cs-icon="download"
-                                                        class="mb-3 d-inline-block text-primary"></i></a>
-                                            </div>
+                                            @if ($data->limite > $item->created_at)
+                                                <div class="text-success">
+                                                    <b>STATUS FINALIZADO</b>
+                                                </div>
+                                            @else
+                                                <div class="text-danger">
+                                                    <b>STATUS RETRASADO</b>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             @endforeach
                         @endif
                         <style>

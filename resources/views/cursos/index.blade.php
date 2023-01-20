@@ -10,7 +10,7 @@
                     <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                         <ul class="breadcrumb pt-0">
                             <li class="breadcrumb-item"><a href={{ route('index') }}>Dashboard</a></li>
-                            <li class="breadcrumb-item"><a>Tutorias</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Tutorias</a></li>
                             <li class="breadcrumb-item active"><a>{{ $title }}</a></li>
                         </ul>
                     </nav>
