@@ -2,42 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use Tipos;
 use Avatar;
 use App\Models\User;
+use App\Models\tutor;
 use App\Models\maestro;
 use Illuminate\Http\Request;
+use App\Http\Requests\TutorRequest;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\MaestrosRequest;
 use Illuminate\Support\Facades\Storage;
-use Tipos;
 
-class MaestrosController extends Controller
+class TutorController extends Controller
 {
     public function registro(){
-        $data['title'] = "Registro de Maestros";
-        return view('maestros.registro',$data);
+        $data['title'] = "Registro de Tutor";
+        return view('tutor.registro',$data);
     }
 
-    public function store(MaestrosRequest $request){
+
+    public function store(TutorRequest $request){
         $filename = time().$request->user.'.png';
 
         $user = new User([
             'name' => strtoupper($request->nombre),
             'user' => $request->user,
             'img'  => $filename,
-            'tipo' => Tipos::MAESTRO,
-            'password' => Hash::make("1234"),
+            'tipo' => Tipos::TUTOR,
+            'password' => Hash::make($request->password),
         ]);
          $user->save();
 
-        $maestro = new maestro([
+        $tutor = new tutor([
             'nombre' => strtoupper($request->nombre),
             'email' => $request->email,
             'edad' => $request->edad,
             'user_id' => $user->id,
             'domicilio' => strtoupper($request->domicilio),
         ]);
-       $maestro->save();
+       $tutor->save();
 
      $avatar = Avatar::create($request->nombre)
      ->setDimension(600, 600)

@@ -29,7 +29,8 @@
                                     alt="card image" />
                                 <div class="card-body">
                                     <h5 class="heading mb-3">
-                                        <a href="{{ route('cursos.detalle', $item->id) }}" class="body-link stretched-link">
+                                        <a href="{{ route('asesorias.detalle', $item->id) }}"
+                                            class="body-link stretched-link">
 
                                             <span class="clamp-line sh-5"
                                                 data-line="2">{{ strtoupper($item->nombre) }}</span>

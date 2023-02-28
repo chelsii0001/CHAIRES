@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class grupo extends Model
 {
-    protected $fillable = ['id','nombre','descripcion','carrera_id'];
+    protected $fillable = ['id','nombre','descripcion','carrera_id','tutor_id'];
     use HasFactory;
 
     public function alumnos()

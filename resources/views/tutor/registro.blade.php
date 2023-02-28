@@ -24,7 +24,7 @@
         <!-- Address Start -->
         <section class="scroll-section" id="address">
             <h2 class="small-title">Registro</h2>
-            <form class="tooltip-end-top" id="form-submit" role="form">
+            <form class="tooltip-end-top" data-action="{{ route('tutor.store') }}" method="POST" id="form-submit">
                 @csrf
                 <div class="card mb-5">
                     <div class="card-body">
@@ -39,6 +39,12 @@
                                 <label class="mb-3 top-label">
                                     <input class="form-control" name="user" required />
                                     <span>USUARIO</span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="mb-3 top-label">
+                                    <input class="form-control" name="password" required type="password" />
+                                    <span>PASSWORD</span>
                                 </label>
                             </div>
                             <div class="col-md-6">
@@ -70,76 +76,14 @@
                         </div>
                     </div>
                     <br>
-                    <div class="col-md-12">
-                        <div class="text-center" style="text-align:center;">
-                            <div id="loading" class="alert-primary text-center hide"></div>
-                            <div id="error" class="alert-danger text-center hide"></div>
-                            <div id="success" class="alert-success text-center hide"></div>
-                            <div class="alert alert-danger print-error-msg" style="display:none">
-                                <ul></ul>
-                            </div>
-                        </div>
-                    </div>
+                    @include('layouts.alerts')
                 </div>
             </form>
         </section>
         <!-- Address End -->
     </div>
 @endsection
+
 @section('script')
-    <script type="text/javascript">
-        $('#BtnSubmit').click(function(e) {
-            $('#loading').show();
-            $('#success').hide();
-            $('#loading').text('CARGANDO....');
-            $('#error').hide();
-            $("#BtnSubmit").prop("disabled", true);
-            let mensajes = [];
-            e.preventDefault();
-            $.ajax({
-                url: "{{ route('maestros.store') }}",
-                data: $("#form-submit").serialize(),
-                type: "POST",
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
-                success: function(data) {
-                    $('#success').text('GUARDADO CORRECTAMENTE');
-                    $('#success').show();
-                    $("#form-submit").trigger("reset");
-                    $("#BtnSubmit").prop("disabled", false);
-                    $('#error').hide();
-                    $('#loading').hide();
-                    $(".print-error-msg").css('display', 'none');
-
-                },
-                error: function(errors) {
-                    $('#success').hide();
-                    $("#BtnSubmit").prop("disabled", false);
-                    if (errors.status == 401) {
-                        window.location.href = '/';
-                    }
-                    if (errors.status == 422) {
-                        mensajes = errors.responseJSON.errors;
-                        printErrorMsg(mensajes);
-                    }
-                    $('#error').text('OCURRIO UN ERROR');
-                    $('#error').show();
-                    $('#loading').hide();
-                }
-
-            });
-
-        });
-
-        function printErrorMsg(msg) {
-
-            $(".print-error-msg").find("ul").html('');
-            $(".print-error-msg").css('display', 'block');
-            $.each(msg, function(key, value) {
-                $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-            });
-
-        }
-    </script>
+    <script src="{{ asset('assets/js/form-post.js') }}"></script>
 @endsection

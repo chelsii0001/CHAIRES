@@ -11,7 +11,7 @@
                     <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
                         <ul class="breadcrumb pt-0">
                             <li class="breadcrumb-item"><a href={{ route('index') }}>Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('cursos.index') }}">Tutorias</a></li>
+                            <li class="breadcrumb-item">Cursos</li>
                             <li class="breadcrumb-item active"><a>{{ $title }}</a></li>
                         </ul>
                     </nav>
@@ -42,10 +42,13 @@
                     <!-- Details Start -->
                     <div class="card-body pt-0">
                         <h4 class="mb-3"><b>NOMBRE:</b> {{ strtoupper($data->nombre) }}</h4>
-                        <h4 class="mb-3"><b>PROFESOR ASIGNADO:</b> {{ strtoupper($data['maestro']->nombre) }}</h4>
+                        <h4 class="mb-3"><b>{{ $data->tipo == 1 ? 'TUTOR' : 'ASESOR' }} ASIGNADO:</b>
+                            {{ strtoupper($data['tutor']->nombre) }}</h4>
                         <h4 class="mb-3"><b>GRUPO ASIGNADO:</b> {{ strtoupper($data['grupo']->nombre) }}</h4>
-                        <h4 class="mb-3"><b>FECHA LIMITE: </b>
-                            {{ strtoupper(Carbon\Carbon::parse($data->limite)->formatLocalized('%d %B %Y')) }}</h4>
+                        <h4 class="mb-3"><b>PERIODO INICIO: </b>
+                            {{ strtoupper(Carbon\Carbon::parse($data->inicio)->formatLocalized('%d %B %Y')) }}</h4>
+                        <h4 class="mb-3"><b>PERIODO FIN: </b>
+                            {{ strtoupper(Carbon\Carbon::parse($data->fin)->formatLocalized('%d %B %Y')) }}</h4>
                         <div class="mb-4">
                             <p>
                                 {{ $data->descripcion }}

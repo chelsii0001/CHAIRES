@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class curso extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','nombre','descripcion','maestro_id','status','limite','grupo_id','img'];
+    protected $fillable = ['user_id','nombre','descripcion','tutor_id','status','inicio','fin','grupo_id','img','tipo'];
 
 
     public static function boot()
@@ -28,9 +28,9 @@ class curso extends Model
 
     }
 
-    public function maestro()
+    public function tutor()
     {
-        return $this->belongsTo(maestro::class);
+        return $this->belongsTo(tutor::class);
     }
 
     public function grupo()

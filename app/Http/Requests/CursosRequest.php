@@ -25,10 +25,11 @@ class CursosRequest extends FormRequest
     {
         return [
             'nombre' => 'required|unique:cursos,nombre',
-            'descripcion' => 'required',
-            'maestro' => 'required',
+            'tutor' => 'required',
             'grupo' => 'required',
-            'limite' => 'required|date|date_format:Y-m-d|after:today',
+            'inicio' => 'required|date|date_format:Y-m-d',
+            'fin' => 'required|date|date_format:Y-m-d',
+            'tipo' => 'required',
             ];
     }
     public function messages()
@@ -39,11 +40,14 @@ class CursosRequest extends FormRequest
             'nombre.required' => 'EL CAMPO "NOMBRE" ES REQUERIDO',
             'nombre.unique' => 'EL CAMPO "NOMBRE" YA HA SIDO REGISTRADO',
             'descripcion.required' => 'EL CAMPO "DESCRIPCIÓN" ES REQUERIDO',
-            'maestro.required' => 'EL CAMPO "PROFESOR" ES REQUERIDO',
+            'tutor.required' => 'EL CAMPO "TUTOR" ES REQUERIDO',
             'grupo.required' => 'EL CAMPO "GRUPO" ES REQUERIDO',
-            'limite.required' => 'EL CAMPO "FECHA LIMITE" ES REQUERIDO',
-            'limite.date' => 'EL CAMPO "FECHA LIMITE" NO ES VALIDO',
-            'limite.after' => 'EL LÍMITE DEBE SER UNA FECHA POSTERIOR A HOY',
+            'inicio.required' => 'EL CAMPO "INICIO" ES REQUERIDO',
+            'inicio.date' => 'EL CAMPO "INICIO" NO ES VALIDO',
+            'fin.required' => 'EL CAMPO "FIN" ES REQUERIDO',
+            'fin.date' => 'EL CAMPO "FIN" NO ES VALIDO',
+            'inicio.after' => 'EL LÍMITE DEBE SER UNA FECHA POSTERIOR A HOY',
+            'tipo.required' => 'EL CAMPO "TIPO" ES REQUERIDO',
         ];
     }
 }

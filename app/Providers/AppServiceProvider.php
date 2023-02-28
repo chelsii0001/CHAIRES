@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +28,13 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setUTF8(true);
         Carbon::setLocale(config('app.locale'));
         setlocale(LC_ALL, 'es_MX', 'es', 'ES', 'es_MX.utf8');
+
+        Blade::if('admin', function () {
+            return auth()->user()->tipo == 1;
+        });
+
+        Blade::if('jefe', function () {
+            return auth()->user()->tipo == 2;
+        });
     }
 }
