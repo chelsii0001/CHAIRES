@@ -20,14 +20,11 @@ $(document).ready(function(){
             success: function(data) {
                 $('#success').text('ACCIÓN REALIZADA CORRECTAMENTE');
                 $('#success').show();
-                $("#form-submit-mensual").trigger("reset");
+               // $("#form-submit-mensual").trigger("reset");
                 $("#BtnSubmit-mensual").prop("disabled", false);
                 $('#error').hide();
                 $('#loading').hide();
                 $(".print-error-msg").css('display', 'none');
-                setTimeout(function(){
-                    location.reload()
-                }, 3000);
 
 
             },
@@ -70,14 +67,12 @@ $(document).ready(function(){
             success: function(data) {
                 $('#success').text('ACCIÓN REALIZADA CORRECTAMENTE');
                 $('#success').show();
-                $("#form-submit-reporte").trigger("reset");
+                //$("#form-submit-reporte").trigger("reset");
                 $("#BtnSubmit").prop("disabled", false);
                 $('#error').hide();
                 $('#loading').hide();
                 $(".print-error-msg").css('display', 'none');
-                setTimeout(function(){
-                    location.reload()
-                }, 3000);
+
 
 
             },
@@ -120,14 +115,11 @@ $(document).ready(function(){
         success: function(data) {
             $('#success').text('ACCIÓN REALIZADA CORRECTAMENTE');
             $('#success').show();
-            $("#form-submit").trigger("reset");
+            //$("#form-submit").trigger("reset");
             $("#BtnSubmit").prop("disabled", false);
             $('#error').hide();
             $('#loading').hide();
             $(".print-error-msg").css('display', 'none');
-            setTimeout(function(){
-                $('#success').hide();
-            }, 3000);
 
 
         },

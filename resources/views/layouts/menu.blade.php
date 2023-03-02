@@ -18,6 +18,13 @@
                             <span class="label">Registar Tutorias</span>
                         </a>
                     </li>
+
+
+                    <li>
+                        <a href="{{ route('cursos.index') }}">
+                            <span class="label">Ver Tutorias</span>
+                        </a>
+                    </li>
                 @endjefe
                 @admin
                     <li>

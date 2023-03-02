@@ -88,7 +88,7 @@
                 success: function(data) {
                     $('#success').text('GUARDADO CORRECTAMENTE');
                     $('#success').show();
-                    $("#form-submit").trigger("reset");
+                    //$("#form-submit").trigger("reset");
                     $("#BtnSubmit").prop("disabled", false);
                     $('#error').hide();
                     $('#loading').hide();

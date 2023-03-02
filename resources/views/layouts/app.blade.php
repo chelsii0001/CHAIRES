@@ -44,6 +44,7 @@
 
                 <!-- User Menu Start -->
                 <div class="user-container d-flex">
+                    {{ Auth::user()->user }}
                     <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <img class="profile" alt="profile"
@@ -87,27 +88,7 @@
                 </div>
                 <!-- User Menu End -->
 
-                <!-- Icons Menu Start -->
-                <ul class="list-unstyled list-inline text-center menu-icons">
-                    <li class="list-inline-item">
-                        <a href="#" data-bs-toggle="dropdown" data-bs-target="#notifications" aria-haspopup="true"
-                            aria-expanded="false" class="notification-button">
-                            <div class="position-relative d-inline-flex">
-                                <i data-cs-icon="bell" data-cs-size="18"></i>
-                                <span class="position-absolute notification-dot rounded-xl"></span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end wide notification-dropdown scroll-out"
-                            id="notifications">
-                            <div class="scroll">
-                                <ul class="list-unstyled border-last-none">
 
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <!-- Icons Menu End -->
 
                 <!-- Menu Start -->
                 @include('layouts.menu')

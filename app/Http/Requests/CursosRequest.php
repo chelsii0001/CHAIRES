@@ -24,7 +24,7 @@ class CursosRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|unique:cursos,nombre',
+            'nombre' => 'required',
             'tutor' => 'required',
             'grupo' => 'required',
             'inicio' => 'required|date|date_format:Y-m-d',

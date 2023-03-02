@@ -54,7 +54,8 @@ class CursosController extends Controller
     }
 
     public function index(){
-        $data['data'] = curso::with('tutor')->where('tipo',Tipos::TUTORIA)->get();
+        $data['sistemas'] = curso::with('tutor')->where('tipo',Tipos::TUTORIA)->where('grupo_id',1)->get();
+        $data['biomedica'] = curso::with('tutor')->where('tipo',Tipos::TUTORIA)->where('grupo_id',4)->get();
         $data['title'] = "Tutorias";
         return view('cursos.index',$data);
     }

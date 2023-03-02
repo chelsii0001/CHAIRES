@@ -25,7 +25,7 @@ class CarrerasRequest extends FormRequest
     {
         return [
             'nombre' => 'required|unique:carreras,nombre',
-            'descripcion' => 'required',
+            //'descripcion' => 'required',
             ];
     }
     public function messages()
